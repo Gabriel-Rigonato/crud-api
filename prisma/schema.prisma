@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model physical_person {
+  id            Int            @id @default(autoincrement())
+  uuid          String         @unique @default(uuid()) @db.VarChar(80)
+  document      String         @db.VarChar(80)
+  name          String         @db.VarChar(80)
+  phone         String?         @db.VarChar(80)
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
+  deleted_at    DateTime?
+
+  user      user[]
+
+  @@map("physical_persons")
+}
+
+model user {
+  id               Int       @id @default(autoincrement())
+  uuid             String    @unique @default(uuid()) @db.VarChar(80)
+  physical_person_id        Int
+  username         String    @db.VarChar(80)
+  password         String    @db.VarChar(255)
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+  deleted_at       DateTime?
+
+  physical_person physical_person @relation(fields: [physical_person_id], references: [id])
+  @@map("users")
+}
+
+model task {
+  id               Int       @id @default(autoincrement())
+  uuid             String    @unique @default(uuid()) @db.VarChar(80)
+  user_id          Int
+  title            String    @db.VarChar(80)
+  description      String    @db.VarChar(255)
+  status           STATUS    @default(NOT_STARTED)
+  active           Boolean   @default(true)
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+  deleted_at       DateTime?
+
+  @@map("tasks")
+}
+
+enum STATUS {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+}
+

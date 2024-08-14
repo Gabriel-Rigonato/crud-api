@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "2feea012-0ee8-43f1-97b1-f721fb15bf28",
+		"name": "Obuc api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31763153"
+	},
+	"item": [
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Create task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Tarefa teste final\",\n    \"description\": \"Mais uma\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OBUC_API_URL_PROD}}/user/tasks",
+							"host": [
+								"{{OBUC_API_URL_PROD}}"
+							],
+							"path": [
+								"user",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"mudando a tarefinhaa\",\n    \"description\": \"é a tarefa final\",\n    \"status\": \"IN_PROGRESS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OBUC_API_URL_PROD}}/user/tasks?uuid=8ea5d1a8-f148-472f-a36a-b0c94cdda4d9",
+							"host": [
+								"{{OBUC_API_URL_PROD}}"
+							],
+							"path": [
+								"user",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "8ea5d1a8-f148-472f-a36a-b0c94cdda4d9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Tasks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"primeira tarefa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OBUC_API_URL_PROD}}/user/tasks?status=",
+							"host": [
+								"{{OBUC_API_URL_PROD}}"
+							],
+							"path": [
+								"user",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task Informations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"primeira tarefa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OBUC_API_URL_PROD}}/user/tasks/details?uuid=8ea5d1a8-f148-472f-a36a-b0c94cdda4d9",
+							"host": [
+								"{{OBUC_API_URL_PROD}}"
+							],
+							"path": [
+								"user",
+								"tasks",
+								"details"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "8ea5d1a8-f148-472f-a36a-b0c94cdda4d9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OBUC_API_URL_PROD}}/user/tasks?uuid=2888df41-0b43-488e-8369-5e8175b62fef",
+							"host": [
+								"{{OBUC_API_URL_PROD}}"
+							],
+							"path": [
+								"user",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "2888df41-0b43-488e-8369-5e8175b62fef"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Joao da silva\",\n    \"document\": \"32.625.378-40\",\n    \"username\": \"email@teste.com.br\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OBUC_API_URL_PROD}}/user/register",
+							"host": [
+								"{{OBUC_API_URL_PROD}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Supondo que você tenha uma resposta JSON com um campo \"token\"",
+									"const jsonData = pm.response.json(); // Parseia a resposta JSON",
+									"const token = jsonData.access_token; // Substitua \"token\" pelo nome do campo que você deseja extrair",
+									"",
+									"// Armazena o valor da variável de ambiente",
+									"pm.environment.set(\"TOKEN\", token); // \"myToken\" é o nome da variável que você está criando",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"teste@email.com.br\",\n    \"password\": \"102030\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{OBUC_API_URL_PROD}}/user/auth/signin",
+							"host": [
+								"{{OBUC_API_URL_PROD}}"
+							],
+							"path": [
+								"user",
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
